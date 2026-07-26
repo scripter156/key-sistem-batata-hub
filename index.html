@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerador de Key - Batata Hub</title>
+    <style>
+        body { background-color: #121212; color: white; font-family: Arial, sans-serif; text-align: center; padding-top: 100px; }
+        button { background-color: #ffaa00; border: none; padding: 15px 30px; font-size: 18px; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        button:hover { background-color: #cc8800; }
+        #keyBox { margin-top: 20px; font-size: 22px; color: #55ff55; display: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Obtenha a Key do Batata Hub</h1>
+    <p>Clique no botão abaixo para se inscrever no canal e liberar sua chave.</p>
+    
+    <!-- Substituí o link para abrir direto o seu canal com base no vídeo enviado -->
+    <button onclick="liberarKey()">INSCREVER-SE E GERAR KEY</button>
+    
+    <div id="keyBox">Sua Key é: <span id="keyVal">BatataDoce123</span></div>
+
+    <script>
+        function liberarKey() {
+            // Abre o seu canal de vídeo em uma nova aba
+            window.open("https://www.youtube.com/watch?v=xNr8qxxMDtE", "_blank");
+            
+            // Mostra a chave na tela após o clique
+            setTimeout(function() {
+                document.getElementById("keyBox").style.display = "block";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
