@@ -2,29 +2,46 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Key - Batata Hub</title>
     <style>
-        body { background-color: #121212; color: white; font-family: Arial, sans-serif; text-align: center; padding-top: 100px; }
-        button { background-color: #ffaa00; border: none; padding: 15px 30px; font-size: 18px; font-weight: bold; cursor: pointer; border-radius: 5px; }
-        button:hover { background-color: #cc8800; }
-        #keyBox { margin-top: 20px; font-size: 22px; color: #55ff55; display: none; font-weight: bold; }
+        body { background-color: #121212; color: white; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        button { background-color: #ffaa00; border: none; padding: 15px 30px; font-size: 18px; font-weight: bold; cursor: pointer; border-radius: 5px; transition: 0.2s; }
+        button:hover { background-color: #cc8800; transform: scale(1.05); }
+        #keyBox { margin-top: 20px; font-size: 22px; color: #55ff55; display: none; font-weight: bold; padding: 10px; border: 1px dashed #55ff55; }
+        
+        /* Estilo dos Anúncios Organizados */
+        .anuncio-topo { width: 100%; max-width: 728px; height: 90px; background-color: #1a1a1a; margin: 20px auto; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #666; font-size: 12px; }
+        .anuncio-bloco { width: 300px; height: 250px; background-color: #1a1a1a; margin: 30px auto; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #666; font-size: 12px; }
     </style>
 </head>
 <body>
-    <h1>Obtenha a Key do Batata Hub</h1>
-    <p>Clique no botão abaixo para se inscrever no canal e liberar sua chave.</p>
-    
-    <!-- Substituí o link para abrir direto o seu canal com base no vídeo enviado -->
-    <button onclick="liberarKey()">INSCREVER-SE E GERAR KEY</button>
-    
-    <div id="keyBox">Sua Key é: <span id="keyVal">BatataDoce123</span></div>
+
+    <!-- ANÚNCIO DE TOPO (BANNER HORIZONTAL) -->
+    <div class="anuncio-topo">
+        <!-- Cole o código do anúncio (script do AdSense/Adsterra) aqui dentro -->
+        Espaço para Anúncio (Banner 728x90)
+    </div>
+
+    <div class="container">
+        <h1>Obtenha a Key do Batata Hub</h1>
+        <p>Clique abaixo para apoiar o canal e liberar sua chave de acesso.</p>
+        
+        <button onclick="liberarKey()">INSCREVER-SE E GERAR KEY</button>
+        
+        <div id="keyBox">Sua Key é: <span id="keyVal">BatataDoce123</span></div>
+    </div>
+
+    <!-- ANÚNCIO DE BLOCO (QUADRADO EMBAIXO) -->
+    <div class="anuncio-bloco">
+        <!-- Cole o código do segundo anúncio aqui dentro -->
+        Espaço para Anúncio (Bloco 300x250)
+    </div>
 
     <script>
         function liberarKey() {
-            // Abre o seu canal de vídeo em uma nova aba
             window.open("https://www.youtube.com/watch?v=xNr8qxxMDtE", "_blank");
-            
-            // Mostra a chave na tela após o clique
             setTimeout(function() {
                 document.getElementById("keyBox").style.display = "block";
             }, 1000);
