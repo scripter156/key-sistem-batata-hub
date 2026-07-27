@@ -3,49 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Key - Batata Hub</title>
+    <title>Batata Hub - Sistema de Keys</title>
     <style>
-        body { background-color: #121212; color: white; font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        button { background-color: #ffaa00; border: none; padding: 15px 30px; font-size: 18px; font-weight: bold; cursor: pointer; border-radius: 5px; transition: 0.2s; }
-        button:hover { background-color: #cc8800; transform: scale(1.05); }
-        #keyBox { margin-top: 20px; font-size: 22px; color: #55ff55; display: none; font-weight: bold; padding: 10px; border: 1px dashed #55ff55; }
-        
-        /* Estilo dos Anúncios Organizados */
-        .anuncio-topo { width: 100%; max-width: 728px; height: 90px; background-color: #1a1a1a; margin: 20px auto; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #666; font-size: 12px; }
-        .anuncio-bloco { width: 300px; height: 250px; background-color: #1a1a1a; margin: 30px auto; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #666; font-size: 12px; }
+        body {
+            background-color: #0a0c10;
+            color: #d7e6f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #0f1115;
+            border: 2px solid #00f0ff;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+            width: 350px;
+        }
+        h1 {
+            color: #00f0ff;
+            margin-top: 0;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            color: #5a6978;
+            font-size: 14px;
+        }
+        .key-box {
+            background-color: #090a0d;
+            border: 1px solid #282d37;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 18px;
+            font-family: monospace;
+            color: #fff;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        button {
+            background-color: #14181e;
+            border: 1.5px solid #00f0ff;
+            color: #00f0ff;
+            border-radius: 6px;
+            padding: 12px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+        }
+        button:hover {
+            background-color: #00f0ff;
+            color: #0a0c10;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
     </style>
 </head>
 <body>
 
-    <!-- ANÚNCIO DE TOPO (BANNER HORIZONTAL) -->
-    <div class="anuncio-topo">
-        <!-- Cole o código do anúncio (script do AdSense/Adsterra) aqui dentro -->
-        Espaço para Anúncio (Banner 728x90)
-    </div>
+<div class="container">
+    <h1>💥 Batata Hub</h1>
+    <p>Gere sua chave de acesso diária abaixo:</p>
+    <div class="key-box" id="keyDisplay">Clique para gerar...</div>
+    <button onclick="gerarECopiarKey()">Gerar e Copiar Key</button>
+</div>
 
-    <div class="container">
-        <h1>Obtenha a Key do Batata Hub</h1>
-        <p>Clique abaixo para apoiar o canal e liberar sua chave de acesso.</p>
-        
-        <button onclick="liberarKey()">INSCREVER-SE E GERAR KEY</button>
-        
-        <div id="keyBox">Sua Key é: <span id="keyVal">BatataDoce123</span></div>
-    </div>
+<script>
+function gerarECopiarKey() {
+    const data = new Date();
+    const dia = data.getDate();
+    const mes = data.getMonth() + 1; // Janeiro é 0
+    
+    // Lógica matemática para mascarar a data e criar o padrão da chave
+    const cod1 = (dia * 7 + 123).toString(16).toUpperCase();
+    const cod2 = (mes * 13 + 456).toString(16).toUpperCase();
+    const hashDia = ((dia + mes) * 42).toString();
+    
+    // Formato final da Key (Ex: BTH-A5-B3F-84)
+    const keyGerada = `BTH-${cod1}-${cod2}-${hashDia}`;
+    
+    // Exibe na tela
+    document.getElementById('keyDisplay').innerText = keyGerada;
+    
+    // Copia para a área de transferência
+    navigator.clipboard.writeText(keyGerada);
+    alert('Sua Key diária foi gerada e copiada com sucesso!');
+}
+</script>
 
-    <!-- ANÚNCIO DE BLOCO (QUADRADO EMBAIXO) -->
-    <div class="anuncio-bloco">
-        <!-- Cole o código do segundo anúncio aqui dentro -->
-        Espaço para Anúncio (Bloco 300x250)
-    </div>
-
-    <script>
-        function liberarKey() {
-            window.open("https://www.youtube.com/watch?v=xNr8qxxMDtE", "_blank");
-            setTimeout(function() {
-                document.getElementById("keyBox").style.display = "block";
-            }, 1000);
-        }
-    </script>
 </body>
 </html>
