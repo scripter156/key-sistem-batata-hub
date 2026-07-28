@@ -43,7 +43,7 @@
             letter-spacing: 1px;
             margin-bottom: 20px;
             word-break: break-all;
-            display: none; /* Escondido no início */
+            display: none;
         }
         .btn {
             background-color: #181c20;
@@ -81,10 +81,8 @@
 <div class="container">
     <h1>Batata Hub Licença</h1>
     
-    <!-- Botão Inicial que joga pro YouTube -->
     <button class="btn" id="btnRedirect" onclick="redirectToYoutube()">1. Assistir Vídeo & Liberar Key</button>
     
-    <!-- Elementos da Key que vão aparecer depois -->
     <div class="key-box" id="keyContainer">BTH-LOADING...</div>
     <button class="btn btn-copy" id="btnCopy" onclick="copyKey()">2. Copiar Licença Gerada</button>
     
@@ -94,26 +92,24 @@
 <script>
     const YOUTUBE_URL = "https://www.youtube.com/watch?v=xNr8qxxMDtE";
 
-    // Função simples de criptografia/obfuskation para gerar a key no frontend
     function generateUniqueKey() {
-        const timestamp = Math.floor(Date.now() / 1000); // Segundos atuais
-        const randomFactor = Math.floor(Math.random() * 899999) + 100000; // Número aleatório puro de 6 dígitos
+        // Geramos dois fatores numéricos altamente aleatórios
+        const token1 = Math.floor(Math.random() * 89999) + 10000; // 5 dígitos
+        const token2 = Math.floor(Math.random() * 89999) + 10000; // 5 dígitos
         
-        // Criamos uma mistura matemática com uma chave interna (Salt: 7531)
-        const part1 = (timestamp ^ 7531).toString(16).toUpperCase();
-        const part2 = (randomFactor ^ 9842).toString(16).toUpperCase();
+        // Obfuscamos os valores somando com chaves fixas conhecidas pelo Roblox
+        const part1 = (token1 + 3541).toString(16).toUpperCase();
+        const part2 = (token2 + 6824).toString(16).toUpperCase();
         
-        // O dígito verificador garante que o Roblox sabe decodificar essa aleatoriedade
-        const checkSum = ((timestamp + randomFactor) * 3).toString(16).toUpperCase();
+        // Criamos a assinatura de validação cruzada baseada na soma dos tokens
+        const checkSum = ((token1 + token2) * 4).toString(16).toUpperCase();
 
         return `BTH-${part1}-${part2}-${checkSum}`;
     }
 
     function redirectToYoutube() {
-        // Abre o link do YouTube solicitado em uma nova aba
         window.open(YOUTUBE_URL, '_blank');
         
-        // Altera a interface para mostrar a Key gerada na hora
         document.getElementById('btnRedirect').style.display = 'none';
         
         const generatedKey = generateUniqueKey();
@@ -124,7 +120,7 @@
         keyContainer.innerText = generatedKey;
         keyContainer.style.display = 'block';
         btnCopy.style.display = 'block';
-        infoText.innerHTML = "<strong>Sua key individual foi gerada!</strong> Ela é única e serve apenas para esta execução.";
+        infoText.innerHTML = "<strong>Sua key individual foi gerada!</strong> Ela é única, aleatória e funcional.";
     }
 
     function copyKey() {
